@@ -1,0 +1,32 @@
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  generateName: frontend-pipeline-run-
+spec:
+  pipelineRef:
+    name: frontend-pipeline
+  serviceAccountName: build-bot
+  params:
+    - name: app-name
+      value: weather-app-frontend
+    - name: source-repo
+      value: https://github.com/cloud-native-garage-method-cohort/emea-06-squad1-weather-app-frontend
+    - name: image-repo
+      value: quay.io/tim_walter_ibm/emea-06-squad1-weather-frontend
+  workspaces:
+    - name: shared
+      volumeClaimTemplate:
+        spec:
+          accessModes:
+            - ReadWriteOnce
+          resources:
+            requests:
+              storage: 10Mi
+    - name: production-repository
+      volumeClaimTemplate:
+        spec:
+          accessModes:
+            - ReadWriteOnce
+          resources:
+            requests:
+              storage: 10Mi

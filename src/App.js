@@ -5,9 +5,7 @@ const App = () => {
 
   useEffect(() => {
     async function fetchWeather() {
-      let response = await (
-        await fetch('http://localhost:3000/weather?city=London')
-      ).json();
+      let response = await (await fetch('/api/weather?city=London')).json();
 
       console.log(response);
       setWeather(response);
