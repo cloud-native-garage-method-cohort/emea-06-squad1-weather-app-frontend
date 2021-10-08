@@ -41,6 +41,7 @@ const App = () => {
       <div id="toast-container">
         {toast.kind ? <ToastNotification {...toast} /> : <></>}
       </div>
+      <h1 className="weather-app-header">Weather App - Squad 1</h1>
       <Searchbar onSearch={weatherLookup} />
       <Weather data={weather} />
     </>

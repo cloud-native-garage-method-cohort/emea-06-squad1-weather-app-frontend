@@ -3,6 +3,11 @@ body {
   margin: 15px;
 }
 
+.weather-app-header {
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
 .search-bar {
   width: 90vw;
 }
