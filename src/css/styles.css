@@ -1,0 +1,55 @@
+body {
+  background-color: #fefefe;
+  margin: 15px;
+}
+
+.search-bar {
+  width: 90vw;
+}
+
+.bx--text-input-wrapper {
+  width: 20vw;
+  display: inline-block;
+}
+
+.search-bar-input {
+  display: inline-block;
+  height: 48px;
+}
+
+.search-bar-button {
+  display: inline-block;
+  width: 10vw;
+  margin-left: 10px;
+}
+
+.weather-box {
+  margin-top: 15px;
+  width: 15vw;
+  border: 2px solid #0f62fe;
+  padding: 6px;
+}
+
+.weather-header {
+  font-size: 1.3em;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.weather-current {
+  font-size: 1.8em;
+  margin-bottom: 16px;
+}
+
+.weather-further-data {
+  margin-bottom: 4px;
+}
+
+#toast-container {
+  margin-top: -1rem+15px;
+  z-index: 99999;
+  position: absolute;
+  right: 15px;
+  top: 0;
+  height: 50vh;
+}

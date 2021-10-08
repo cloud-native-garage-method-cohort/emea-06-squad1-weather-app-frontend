@@ -1,20 +1,50 @@
-import React, { useEffect, useState } from 'react';
+import { ToastNotification } from 'carbon-components-react';
+import React, { useState } from 'react';
+import Searchbar from './components/Searchbar';
+import Weather from './components/Weather';
 
 const App = () => {
   const [weather, setWeather] = useState({});
+  const [toast, setToast] = useState({});
 
-  useEffect(() => {
-    async function fetchWeather() {
-      let response = await (await fetch('/weather?city=London')).json();
+  const weatherLookup = async (city) => {
+    try {
+      const response = await (await fetch(`/weather?city=${city}`)).json();
 
-      console.log(response);
+      if (response.error) {
+        setToast({
+          kind: 'error',
+          title: response.error,
+          subtitle: response.message,
+          onClose: () => setToast({}),
+        });
+
+        return;
+      }
+
       setWeather(response);
+    } catch (err) {
+      console.log(err);
+
+      setToast({
+        kind: 'error',
+        title: 'Internal Server Error',
+        onClose: () => setToast({}),
+      });
+
+      return;
     }
+  };
 
-    fetchWeather();
-  }, []);
-
-  return <div>Weather: {JSON.stringify(weather)}</div>;
+  return (
+    <>
+      <div id="toast-container">
+        {toast.kind ? <ToastNotification {...toast} /> : <></>}
+      </div>
+      <Searchbar onSearch={weatherLookup} />
+      <Weather data={weather} />
+    </>
+  );
 };
 
 export default App;
