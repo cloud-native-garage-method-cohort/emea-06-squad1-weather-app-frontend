@@ -1,7 +1,7 @@
 apiVersion: triggers.tekton.dev/v1alpha1
 kind: TriggerTemplate
 metadata:
-  name: vcs-trigger
+  name: vcs-trigger-frontend-frontend
 spec:
   resourcetemplates:
     - apiVersion: tekton.dev/v1beta1
@@ -40,28 +40,28 @@ spec:
 apiVersion: triggers.tekton.dev/v1alpha1
 kind: TriggerBinding
 metadata:
-  name: vcs-trigger
+  name: vcs-trigger-frontend
 ---
 apiVersion: triggers.tekton.dev/v1alpha1
 kind: EventListener
 metadata:
-  name: vcs-trigger
+  name: vcs-trigger-frontend
 spec:
-  serviceAccountName: vcs-trigger
+  serviceAccountName: vcs-trigger-frontend
   triggers:
     - bindings:
-        - ref: vcs-trigger
+        - ref: vcs-trigger-frontend
       template:
-        name: vcs-trigger
+        name: vcs-trigger-frontend
 ---
 apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
-  name: vcs-trigger
+  name: vcs-trigger-frontend
 spec:
   port:
     targetPort: 8080
   to:
     kind: Service
-    name: el-vcs-trigger
+    name: el-vcs-trigger-frontend
     weight: 100
